@@ -1,0 +1,13 @@
+.main-title{
+    color: blueviolet;
+}
+
+pippo-tag{
+    color: blueviolet;
+    display: inline-block;
+    width: 300px;
+}
+
+.par{
+    background-color: coral;
+}
