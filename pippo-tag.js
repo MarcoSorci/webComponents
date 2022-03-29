@@ -1,5 +1,4 @@
 class PippoTag extends HTMLElement {
-
     styleUrl = './work-style.css';
 
     htmlTemplate = `
@@ -27,7 +26,7 @@ class PippoTag extends HTMLElement {
     getAttributes() {
         if (this.getAttribute('pippo-user')) {
             this.user = JSON.parse(this.getAttribute('pippo-user'));
-        } console.log(this.user);
+        }
         if (this.getAttribute('has-button')) {
             this.hasButton = this.getAttribute('has-button') === 'true';
         }
@@ -35,19 +34,18 @@ class PippoTag extends HTMLElement {
 
     initStyle() {
         fetch(this.styleUrl)
-            .then(res => res.text())
-            .then(myStyle => {
+            .then((res) => res.text())
+            .then((myStyle) => {
                 const style = document.createElement('style');
                 style.innerText = myStyle;
                 this.shadowRoot.appendChild(style);
             });
-
     }
 
     initTag() {
         if (this.user) {
             this.htmlTemplate = this.htmlTemplate.replace('#USERNAME', this.user.name);
-            this.htmlTemplate = this.htmlTemplate.replace('#MAIL', this.user.mail);  //this acts like {{}}, you just have to do it manually
+            this.htmlTemplate = this.htmlTemplate.replace('#MAIL', this.user.mail); // this acts like {{}}, you just have to do it manually
             this.shadowRoot.innerHTML = this.htmlTemplate;
         }
 
@@ -59,17 +57,17 @@ class PippoTag extends HTMLElement {
             this.shadowRoot.appendChild(button);
         }
 
-
-        // const node = document.createTextNode('pippo')
-        // const p = document.createElement('p')
-        // p.className = 'par'
-        // p.appendChild(node)
-        // this.shadowRoot.appendChild(p);
+    // const node = document.createTextNode('pippo')
+    // const p = document.createElement('p')
+    // p.className = 'par'
+    // p.appendChild(node)
+    // this.shadowRoot.appendChild(p);
     }
+
     buttonClicked() {
         const event = new CustomEvent('user-selected', {
             bubbles: true,
-            detail: this.user
+            detail: this.user,
         });
         this.dispatchEvent(event);
     }
