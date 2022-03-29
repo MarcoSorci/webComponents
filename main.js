@@ -7,6 +7,8 @@ const users = [
     { name: 'dererr', mail: 'nbvnbbvn@jhkhjkhj.pp' }
 ];
 
+document.getElementById('main-title').setAttribute('user-count', users.length + '')
+
 for (const user of users) {
     const pippoTag = document.createElement('pippo-tag');
     pippoTag.setAttribute('pippo-user', JSON.stringify(user));
@@ -21,3 +23,4 @@ function replaceSelected(user) {
     pippoTag.setAttribute('pippo-user', JSON.stringify(user));
     document.selectedContainer.appendChild(pippoTag);
 }
+
